@@ -12,6 +12,10 @@ helpers do
       "<p> id=paragraph#{index}>#{line}</P>"
     end.join
   end
+
+  def highlight_search_term(text, search_term)
+    text.gsub(search_term, "<strong>#{search_term}</strong>")
+  end
 end
 
 get "/" do
