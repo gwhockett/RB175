@@ -6,9 +6,9 @@ require "tilt/erubi"
 def add_user(name, email, interests)
   users = YAML.load_file('users.yaml')
   users[name]= {
-                  :email=>email,
-                  :interests=>interests
-                  }
+                 :email=>email,
+                 :interests=>interests
+                }
 
   File.open('users.yaml', 'w') do |file|
     file.write(YAML.dump(users))
@@ -18,20 +18,15 @@ end
 # add_user(:george, "gwhockett@gmail.com", ["cycling", "psychology", "movies"])
 
 before do
-  @title = "Users and Interests"
+  @title = "Welcome to Users and Interests!"
   @users = YAML.load_file('users.yaml')
 end
 
-def number_of_interests
-  total = 0
-  @users.values.each do |info|
-    total += info[:interests].count
+helpers do
+  def number_of_interests
+    @users.values.sum { |info| info[:interests].count }
   end
 
-  total
-end
-
-helpers do
   def current_user(user)
     @users[user.to_sym]
   end
@@ -46,6 +41,10 @@ helpers do
 end
 
 get "/" do
+  redirect "/users"
+end
+
+get "/users" do
   erb :home
 end
 
@@ -56,5 +55,5 @@ get "/users/:user" do
 end
 
 not_found do
-  redirect "/"
+  redirect "/users"
 end

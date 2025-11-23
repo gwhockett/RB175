@@ -1,8 +1,8 @@
-<h2><%=@title%></h2>
-
+<h1><%=@title%></h1>
+<h2>Current User List:</h2>
 <div>
   <ul>
-    <% @users.keys.map do |user| %>
+    <% @users.keys.each do |user| %>
         <li>
           <a href="/users/<%= user %>"><%= user.capitalize %></a>
         </li>
