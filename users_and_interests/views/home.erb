@@ -1,0 +1,11 @@
+<h2><%=@title%></h2>
+
+<div>
+  <ul>
+    <% @users.keys.map do |user| %>
+        <li>
+          <a href="/users/<%= user %>"><%= user.capitalize %></a>
+        </li>
+    <% end %>
+  </ul>
+</div>

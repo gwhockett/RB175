@@ -1,0 +1,11 @@
+<h2>User <%= @user.capitalize %>'s details:</h2>
+<h2>Email: <%= "#{current_user(@user)[:email]}" %></h2>
+<h2>Interests: <%= "#{current_user(@user)[:interests].join(", ")}" %></h2>
+<h2>Other Users:</h2>
+<ul>
+  <% other_users(@user).keys.map do |other_user| %>
+    <li>
+      <a href="/users/<%= other_user %>"><%= other_user.capitalize %></a>
+    </li>
+  <% end %>
+</ul>
