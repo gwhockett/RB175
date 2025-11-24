@@ -32,7 +32,7 @@ helpers do
   end
 
   def other_users(user)
-    @users.reject {|key,_| key == user.to_sym }
+    @users.reject {|key,_| key == user.to_sym }.keys
   end
 
   def count_interests
